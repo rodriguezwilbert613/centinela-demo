@@ -5,16 +5,15 @@
 struct Cache {
   std::vector<std::string> nombres;
 
-  const std::string& ultimo_tras_limpiar() {
-    const std::string& r = nombres[0];
+  std::string ultimo_tras_limpiar() {
+    std::string r = nombres[0];  // copia antes de limpiar
     nombres.clear();
-    return r;  // la referencia quedó colgando
+    return r;
   }
 
   std::size_t agregar_y_medir(const std::string& n) {
-    std::string& primero = nombres[0];
-    nombres.push_back(n);       // puede reubicar si la capacidad está agotada
-    return primero.size();
+    nombres.push_back(n);
+    return nombres[0].size();  // se obtiene después de push_back
   }
 };
 
